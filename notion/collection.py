@@ -215,7 +215,6 @@ class CollectionView(Record):
         super().__init__(*args, **kwargs)
 
     def build_query(self, **kwargs):
-        print(**kwargs)
         return CollectionQuery(
             collection=self.collection, collection_view=self, **kwargs
         )
@@ -295,6 +294,7 @@ class CollectionQuery(object):
         aggregate=[],
         aggregations=[],
         filter=[],
+        filter_operator="",
         sort=[],
         calendar_by="",
         group_by="",
@@ -307,6 +307,7 @@ class CollectionQuery(object):
         self.aggregate = _normalize_query_data(aggregate, collection)
         self.aggregations = _normalize_query_data(aggregations, collection)
         self.filter = _normalize_query_data(filter, collection)
+        self.filter_operator = filter_operator
         self.sort = _normalize_query_data(sort, collection)
         self.calendar_by = _normalize_property_name(calendar_by, collection)
         self.group_by = _normalize_property_name(group_by, collection)
