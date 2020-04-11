@@ -215,6 +215,7 @@ class CollectionView(Record):
         super().__init__(*args, **kwargs)
 
     def build_query(self, **kwargs):
+        print(**kwargs)
         return CollectionQuery(
             collection=self.collection, collection_view=self, **kwargs
         )
